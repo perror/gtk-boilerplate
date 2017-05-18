@@ -1,0 +1,66 @@
+		       Gtk-boilerplate Project
+		       =======================
+
+
+Gtk-boilerplate is intended to create a basic Gtk 3.0 code skeleton
+for a simple Gtk application with a CMake build-system and a few extra
+features such as:
+
+- Handling of options from command-line.
+- Minimal Gtk Widgets (menubar, about modal window, text window, ...).
+- An optional toolbar.
+- Support for drag-n-drop, and others...
+- Internationalization (i18n, gettext).
+- Unit test framework.
+- Basic documentation.
+
+
+We try to NOT use GtkBuilder and write the interface entirely in C.
+
+Quick installation guide
+========================
+Gtk-boilerplate requires CMake 3.0, glib 2.0, gtk+ 3.0 and intltool 0.5.
+
+Building the project is quite simple from the project root directory:
+
+$> mkdir build
+$> cd build
+$> cmake ../
+$> make
+
+Then, installing it requires root rights and is simply done by:
+
+$> make install
+
+
+Advanced build guide
+====================
+
+* CMake build modes (Release, Debug, Profile)
+---------------------------------------------
+The CMake build comes with several modes: 'Release' (default), 'Debug'
+and 'Profile'.
+
+$> mkdir Release
+$> cd Release/
+$> cmake [-DCMAKE_BUILD_TYPE=Release] ../
+$> make
+
+Or, to enable 'Debug':
+
+$> mkdir Debug
+$> cd Debug/
+$> cmake -DCMAKE_BUILD_TYPE=Debug ../
+$> make
+
+Or, to enable 'Profile':
+
+$> mkdir Profile
+$> cd Profile/
+$> cmake -DCMAKE_BUILD_TYPE=Profile ../
+$> make
+
+
+* Verbose build
+---------------
+$> make VERBOSE=1

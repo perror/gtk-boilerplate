@@ -1,0 +1,21 @@
+==============================
+= Gtk-boilerplate Changelogs =
+==============================
+
+Version 0.1.0 (May 17, 2017)
+----------------------------
+* Build system with CMake and a minimal gtk application
+  (Debug, Release, Profile)
+* Added a '--version', '-V' command line option
+
+TODO-list
+---------
+- Open files given on the command line
+- Add a gtk-menubar with minimal support for menu items
+  (file->open, file->quit, file->preferences, help->about, ...)
+- Text-area in the main windows display file content
+- Optional toolbar
+- Internationalization (gettext)
+- Tests (CUnit + memcheck)
+- Documentation
+
