@@ -19,7 +19,7 @@
 
 #include <gtk/gtk.h>
 
-#define __Unused __attribute__((unused))
+#define __unused __attribute__((unused))
 
 #define RETURN_SUCCESS 0
 #define RETURN_FAILURE -1
@@ -31,9 +31,10 @@ GSList *cmd_line_file_list;
 
 /* Call-back to handle a local option on command line */
 static gint
-handle_local_options (GApplication __Unused *app,
+handle_local_options (GApplication __unused *app,
 		      GVariantDict *options)
 {
+  /* Handling the '--version' option */
   if (g_variant_dict_contains (options, "version"))
     {
       g_print ("%s - Version %s\n", g_get_application_name (), VERSION);
@@ -58,7 +59,7 @@ activate (GApplication * app)
 
 /* Call-back to open a file from a file browser */
 static void
-open (GtkApplication __Unused * app)
+open (GtkApplication __unused * app)
 {
   g_print("Open\n");
 }
