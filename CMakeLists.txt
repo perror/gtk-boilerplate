@@ -24,6 +24,7 @@ message("** Scanning System")
 
 # Setup project name and programming language
 project(gtk-boilerplate C)
+set(PROJECT_VERSION "0.1.0")
 
 # Default build-type is 'Release'
 set(Profile "Profile")
@@ -77,7 +78,7 @@ link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
 # Gtk-boilerplate options
-option(Gtk-boilerplate_DEBUG  "Enable debug"          OFF)
+option(Gtk-boilerplate_DEBUG "Enable debug" OFF)
 
 # Propagate to subdirectories
 add_subdirectory(src)

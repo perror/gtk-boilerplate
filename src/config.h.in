@@ -20,9 +20,19 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#define VERSION "@PROJECT_VERSION@"
+/* Shorten "unused" GCC pragma */
+#define __unused __attribute__((unused))
 
-#define DATADIR "@PROJECT_BINARY_DIR@"
+/* Setting various libraries macros */
 
+/* Default for returning success/failure */
+#define RETURN_SUCCESS 0
+#define RETURN_FAILURE -1
 
-#endif
+/* Specific project macros */
+#define GETTEXT_PACKAGE "@PROJECT_NAME@"
+#define PROG_NAME       "@PROJECT_NAME@"
+#define PROG_VERSION    "@PROJECT_VERSION@"
+#define DATADIR         "@PROJECT_BINARY_DIR@"
+
+#endif /* CONFIG_H */

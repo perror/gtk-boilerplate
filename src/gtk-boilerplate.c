@@ -19,12 +19,7 @@
 
 #include <gtk/gtk.h>
 
-#define __unused __attribute__((unused))
-
-#define RETURN_SUCCESS 0
-#define RETURN_FAILURE -1
-
-#define VERSION "0.1.0"
+#include "config.h"
 
 /* Global variables */
 GSList *cmd_line_file_list;
@@ -37,7 +32,7 @@ handle_local_options (GApplication __unused *app,
   /* Handling the '--version' option */
   if (g_variant_dict_contains (options, "version"))
     {
-      g_print ("%s - Version %s\n", g_get_application_name (), VERSION);
+      g_print ("%s - Version %s\n", PROG_NAME, PROG_VERSION);
       return RETURN_SUCCESS;
     }
 

@@ -16,6 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Gtk-boilerplate. If not, see <http://www.gnu.org/licenses/>.
 
+# Configuration file
+configure_file(config.h.in config.h @ONLY)
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+
 # Setup the main executable
 set(SRC_LIST gtk-boilerplate.c)
 add_executable(gtk-boilerplate ${SRC_LIST})
