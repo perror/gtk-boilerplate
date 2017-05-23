@@ -17,6 +17,9 @@
  * along with Gtk-boilerplate. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <stdio.h>
+
+#include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
 #include "config.h"
@@ -32,7 +35,7 @@ handle_local_options (GApplication __unused *app,
   /* Handling the '--version' option */
   if (g_variant_dict_contains (options, "version"))
     {
-      g_print ("%s - Version %s\n", PROG_NAME, PROG_VERSION);
+      fprintf (stdout, "%s - Version %s\n", PROG_NAME, PROG_VERSION);
       return RETURN_SUCCESS;
     }
 
@@ -44,6 +47,13 @@ static void
 quit (GtkApplication __unused * app)
 {
   g_print("Quit\n");
+}
+
+/* Call-back to call the 'about' modal window of the application */
+static void
+about (GtkApplication __unused * app)
+{
+  g_print("About\n");
 }
 
 /* Call-back to setup application when run by the Desktop environment */
@@ -65,9 +75,9 @@ activate (GApplication * app)
 
   /* Adding a 'File' menu */
   GtkWidget *file_menu = gtk_menu_new();
-  GtkWidget *file_menu_file = gtk_menu_item_new_with_label("File");
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_menu_file), file_menu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file_menu_file);
+  GtkWidget *file_menu_content = gtk_menu_item_new_with_label("File");
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_menu_content), file_menu);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file_menu_content);
 
   /* Adding a 'File->Open' submenu */
   GtkWidget *file_menu_open = gtk_menu_item_new_with_label("Open");
@@ -84,8 +94,19 @@ activate (GApplication * app)
   /* Adding a 'File->Quit' submenu */
   GtkWidget *file_menu_quit = gtk_menu_item_new_with_label("Quit");
   gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), file_menu_quit);
-
   g_signal_connect (file_menu_quit, "activate", G_CALLBACK (quit), app);
+
+  /* Adding a 'Help' menu */
+  GtkWidget *help_menu = gtk_menu_new();
+  GtkWidget *help_menu_content = gtk_menu_item_new_with_label("Help");
+  gtk_menu_item_set_submenu(GTK_MENU_ITEM(help_menu_content), help_menu);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), help_menu_content);
+
+  /* Adding a 'Help->About' submenu */
+  GtkWidget *help_menu_quit = gtk_menu_item_new_with_label("About");
+  gtk_menu_shell_append(GTK_MENU_SHELL(help_menu), help_menu_quit);
+  g_signal_connect (help_menu_quit, "activate", G_CALLBACK (about), app);
+
 
   /* Display the window and its content */
   gtk_widget_show_all (window);
