@@ -29,8 +29,7 @@ GSList *cmd_line_file_list;
 
 /* Call-back to handle a local option on command line */
 static gint
-handle_local_options (GApplication __unused *app,
-		      GVariantDict *options)
+handle_local_options (GApplication __unused * app, GVariantDict * options)
 {
   /* Handling the '--version' option */
   if (g_variant_dict_contains (options, "version"))
@@ -46,14 +45,14 @@ handle_local_options (GApplication __unused *app,
 static void
 quit (GtkApplication __unused * app)
 {
-  g_print("Quit\n");
+  g_print ("Quit\n");
 }
 
 /* Call-back to call the 'about' modal window of the application */
 static void
 about (GtkApplication __unused * app)
 {
-  g_print("About\n");
+  g_print ("About\n");
 }
 
 /* Call-back to setup application when run by the Desktop environment */
@@ -66,45 +65,45 @@ activate (GApplication * app)
   gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
 
   /* Setting main box */
-  GtkWidget *main_box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-  gtk_container_add(GTK_CONTAINER(window), main_box);
+  GtkWidget *main_box = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+  gtk_container_add (GTK_CONTAINER (window), main_box);
 
   /* Adding a menubar to the main window */
-  GtkWidget *menubar = gtk_menu_bar_new();
-  gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
+  GtkWidget *menubar = gtk_menu_bar_new ();
+  gtk_box_pack_start (GTK_BOX (main_box), menubar, FALSE, FALSE, 0);
 
   /* Adding a 'File' menu */
-  GtkWidget *file_menu = gtk_menu_new();
-  GtkWidget *file_menu_content = gtk_menu_item_new_with_label("File");
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(file_menu_content), file_menu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), file_menu_content);
+  GtkWidget *file_menu = gtk_menu_new ();
+  GtkWidget *file_menu_content = gtk_menu_item_new_with_label ("File");
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (file_menu_content), file_menu);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menubar), file_menu_content);
 
   /* Adding a 'File->Open' submenu */
-  GtkWidget *file_menu_open = gtk_menu_item_new_with_label("Open");
-  gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), file_menu_open);
+  GtkWidget *file_menu_open = gtk_menu_item_new_with_label ("Open");
+  gtk_menu_shell_append (GTK_MENU_SHELL (file_menu), file_menu_open);
 
   /* Adding a 'File->Preferences' submenu */
-  GtkWidget *file_menu_prefs = gtk_menu_item_new_with_label("Preferences");
-  gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), file_menu_prefs);
+  GtkWidget *file_menu_prefs = gtk_menu_item_new_with_label ("Preferences");
+  gtk_menu_shell_append (GTK_MENU_SHELL (file_menu), file_menu_prefs);
 
   /* Adding a separator in the menu */
-  GtkWidget *file_menu_sep = gtk_separator_menu_item_new();
-  gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), file_menu_sep);
+  GtkWidget *file_menu_sep = gtk_separator_menu_item_new ();
+  gtk_menu_shell_append (GTK_MENU_SHELL (file_menu), file_menu_sep);
 
   /* Adding a 'File->Quit' submenu */
-  GtkWidget *file_menu_quit = gtk_menu_item_new_with_label("Quit");
-  gtk_menu_shell_append(GTK_MENU_SHELL(file_menu), file_menu_quit);
+  GtkWidget *file_menu_quit = gtk_menu_item_new_with_label ("Quit");
+  gtk_menu_shell_append (GTK_MENU_SHELL (file_menu), file_menu_quit);
   g_signal_connect (file_menu_quit, "activate", G_CALLBACK (quit), app);
 
   /* Adding a 'Help' menu */
-  GtkWidget *help_menu = gtk_menu_new();
-  GtkWidget *help_menu_content = gtk_menu_item_new_with_label("Help");
-  gtk_menu_item_set_submenu(GTK_MENU_ITEM(help_menu_content), help_menu);
-  gtk_menu_shell_append(GTK_MENU_SHELL(menubar), help_menu_content);
+  GtkWidget *help_menu = gtk_menu_new ();
+  GtkWidget *help_menu_content = gtk_menu_item_new_with_label ("Help");
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (help_menu_content), help_menu);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menubar), help_menu_content);
 
   /* Adding a 'Help->About' submenu */
-  GtkWidget *help_menu_quit = gtk_menu_item_new_with_label("About");
-  gtk_menu_shell_append(GTK_MENU_SHELL(help_menu), help_menu_quit);
+  GtkWidget *help_menu_quit = gtk_menu_item_new_with_label ("About");
+  gtk_menu_shell_append (GTK_MENU_SHELL (help_menu), help_menu_quit);
   g_signal_connect (help_menu_quit, "activate", G_CALLBACK (about), app);
 
 
@@ -116,7 +115,7 @@ activate (GApplication * app)
 static void
 open (GtkApplication __unused * app)
 {
-  g_print("Open\n");
+  g_print ("Open\n");
 }
 
 int
@@ -135,14 +134,11 @@ main (int argc, char **argv)
   g_signal_connect (app, "open", G_CALLBACK (open), NULL);
 
   /* Adding custom options to command-line */
-  const GOptionEntry options[] =
-    {
-      {
-	"version", 'V', 0, G_OPTION_ARG_NONE, NULL,
-	"Show application's version", NULL
-      },
-      { NULL }
-    };
+  const GOptionEntry options[] = {
+    {"version", 'V', 0, G_OPTION_ARG_NONE, NULL,
+     "Show application's version", NULL},
+    {NULL}
+  };
 
   g_application_add_main_option_entries (G_APPLICATION (app), options);
 
