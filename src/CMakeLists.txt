@@ -21,7 +21,9 @@ configure_file(config.h.in config.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 # Setup the main executable
-set(SRC_LIST gtk-boilerplate.c)
+set(SRC_LIST
+  gtk-boilerplate.c
+  main_window.c)
 add_executable(gtk-boilerplate ${SRC_LIST})
 
 # Link the main target
