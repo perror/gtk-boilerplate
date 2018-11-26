@@ -20,12 +20,23 @@
 configure_file(config.h.in config.h @ONLY)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
+# Main executable
+set(EXEC gtk-boilerplate)
+
 # Setup the main executable
 set(SRC_LIST
   gtk-boilerplate.c
   main_window.c)
-add_executable(gtk-boilerplate ${SRC_LIST})
+add_executable(${EXEC} ${SRC_LIST})
 
 # Link the main target
-target_link_libraries(gtk-boilerplate ${GLIB_LIBRARY_DIRS} ${GTK3_LIBRARIES})
+target_link_libraries(${EXEC} ${GLIB_LIBRARY_DIRS} ${GTK3_LIBRARIES})
 
+# Copy final executable in build root directory
+add_custom_command(TARGET ${EXEC}
+                   POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E
+		   copy $<TARGET_FILE:${EXEC}> ${PROJECT_BINARY_DIR})
+# Cleaning it
+set_property(DIRECTORY PROPERTY
+             ADDITIONAL_MAKE_CLEAN_FILES ${PROJECT_BINARY_DIR}/gtk-boilerplate)
