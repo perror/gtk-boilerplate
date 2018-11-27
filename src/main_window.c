@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2017 Emmanuel Fleury <emmanuel.fleury@u-bordeaux.fr>
+ *  Copyright (C) 2017-2018 Emmanuel Fleury <emmanuel.fleury@u-bordeaux.fr>
  *
  * This source file is part of Gtk-boilerplate.
  *
@@ -17,9 +17,9 @@
  * along with Gtk-boilerplate. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "config.h"
-
 #include "main_window.h"
+
+#include "config.h"
 
 static GtkWidget * main_window;
 

@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2017 Emmanuel Fleury <emmanuel.fleury@u-bordeaux.fr>
+ *  Copyright (C) 2017-2018 Emmanuel Fleury <emmanuel.fleury@u-bordeaux.fr>
  *
  * This source file is part of Gtk-boilerplate.
  *

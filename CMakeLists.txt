@@ -77,6 +77,12 @@ include_directories(${GTK3_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
+# Setting up Intl
+find_package (Intl REQUIRED)
+find_package(Gettext REQUIRED)
+include_directories(${INTL_INCLUDE_DIRS})
+link_directories(${INTL_LIBRARY_DIRS})
+
 # Propagate to subdirectories
 add_subdirectory(src)
 
